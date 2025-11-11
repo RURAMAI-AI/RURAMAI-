@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent AI Solutions for Enterprise - RURAMAI</title>
+    <meta name="description" content="RURAMAI provides enterprise-grade AI solutions, including intelligent chat systems, AgTech, and MedTech, deployed on your infrastructure for complete data privacy and cost savings.">
+    <meta name="keywords" content="Enterprise AI, Intelligent Chat, AgTech, MedTech, AI Solutions, On-Premise AI, RURAMAI, AI in Zimbabwe, Custom AI">
+    <meta name="author" content="RURAMAI">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ruramai.tech/">
+    <meta property="og:title" content="Intelligent AI Solutions for Enterprise - RURAMAI">
+    <meta property="og:description" content="Enterprise-grade AI systems deployed on your infrastructure with complete data privacy and significant cost savings.">
+    <meta property="og:image" content="https://ik.imagekit.io/ojfedrprt/RURAMAI_LOGO_WHT.png?updatedAt=1761251517247">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.ruramai.tech/">
+    <meta property="twitter:title" content="Intelligent AI Solutions for Enterprise - RURAMAI">
+    <meta property="twitter:description" content="Enterprise-grade AI systems deployed on your infrastructure with complete data privacy and significant cost savings.">
+    <meta property="twitter:image" content="https://ik.imagekit.io/ojfedrprt/RURAMAI_LOGO_WHT.png?updatedAt=1761251517247">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ik.imagekit.io/ojfedrprt/R-180.png?updatedAt=1762885922414">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://ik.imagekit.io/ojfedrprt/R-32.png?updatedAt=1762885922450">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://ik.imagekit.io/ojfedrprt/R-16.png?updatedAt=1762885922228">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://ik.imagekit.io/ojfedrprt/R-48.png?updatedAt=1762885922257">
+    <link rel="icon" type="image/png" sizes="64x64" href="https://ik.imagekit.io/ojfedrprt/R-64.png?updatedAt=1762885922225">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RURAMAI",
+      "url": "https://www.ruramai.tech",
+      "logo": "https://ik.imagekit.io/ojfedrprt/RURAMAI_LOGO_WHT.png?updatedAt=1761251517247",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+263-XXX-XXXX",
+        "contactType": "customer service",
+        "email": "info@ruramai.tech"
+      },
+      "sameAs": [
+        "https://twitter.com/ruramai",
+        "https://www.linkedin.com/company/ruramai"
+      ]
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #3e444e;
+            --darker: #3e444e;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --success: #10b981;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(62, 68, 78, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .scrolled {
+            background: rgba(62, 68, 78, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 35px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: inline-block;
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--light);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 1rem;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: calc(100% - 2rem);
+        }
+
+        /* Scramble text styles */
+        .scramble-text {
+            position: relative;
+            height: 1.2em;
+            min-width: 80px;
+        }
+
+        .scramble-text .original,
+        .scramble-text .scrambled {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .scramble-text .scrambled {
+            opacity: 0;
+            color: var(--light);
+        }
+
+        .scramble-char {
+            color: var(--light) !important;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn-outline {
+            color: var(--light);
+            border: 1px solid var(--gray);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Responsive buttons */
+        @media (max-width: 768px) {
+            .nav-actions {
+                gap: 0.5rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 10rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-hero p {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        /* Video and Content Sections */
+        .video-content-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            min-height: 300px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-light);
+            background: var(--card-bg);
+            z-index: 2;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .video-placeholder h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .video-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 16px;
+            z-index: 3;
+        }
+
+        .video-error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 4;
+        }
+
+        .content-text {
+            padding: 2rem;
+        }
+
+        .content-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+
+        .content-text p {
+            color: var(--gray-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .content-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .content-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .content-features li:last-child {
+            border-bottom: none;
+        }
+
+        .content-features li i {
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--gray);
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .video-content-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .page-hero {
+                padding: 8rem 0 3rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .video-content-section {
+                margin: 2rem 0;
+            }
+
+            .content-text {
+                padding: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Email Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--dark);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.75rem;
+            color: var(--light);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--light);
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray-light);
+            font-weight: 500;
+        }
+
+        .modal-body input,
+        .modal-body textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
+            background: var(--card-bg);
+            color: var(--light);
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-body input:focus,
+        .modal-body textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+        }
+
+        .modal-body textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        #form-messages {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        #form-messages.success {
+            background: var(--success);
+            color: white;
+            display: block;
+        }
+
+        #form-messages.error {
+            background: #ef4444;
+            color: white;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="https://ik.imagekit.io/ojfedrprt/RURAMAI_LOGO_WHT.png?updatedAt=1761251517247" alt="RURAMAI Logo">
+                </div>
+                
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="nav-links">
+                    <a href="#home" class="nav-link scramble-text">
+                        <span class="original">Home</span>
+                        <span class="scrambled"></span>
+                    </a>
+                    <a href="#chat" class="nav-link scramble-text">
+                        <span class="original">Chat</span>
+                        <span class="scrambled"></span>
+                    </a>
+                    <a href="#agtech" class="nav-link scramble-text">
+                        <span class="original">AgTech</span>
+                        <span class="scrambled"></span>
+                    </a>
+                    <a href="#medtech" class="nav-link scramble-text">
+                        <span class="original">MedTech</span>
+                        <span class="scrambled"></span>
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#contact" class="btn btn-primary open-modal">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero" id="home">
+        <div class="page-hero-bg"></div>
+        <div class="container">
+            <h1>Intelligent AI Solutions</h1>
+            <p>Enterprise-grade AI systems deployed on your infrastructure with complete data privacy and significant cost savings.</p>
+            <a href="#chat" class="btn btn-primary">Explore Solutions</a>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat" class="section-chat">
+        <div class="container">
+            <div class="section-header">
+                <h2>Intelligent Chat Systems</h2>
+                <p>Enterprise-grade private AI chat assistants with complete data privacy</p>
+            </div>
+            
+            <!-- EnterpriseChatGPT Video & Content -->
+            <div class="video-content-section">
+                <div class="video-container" id="enterprisechatgpt-video">
+                    <!-- Video will be loaded here -->
+                    <div class="video-placeholder" id="chat-placeholder">
+                        <i class="fas fa-comments"></i>
+                        <h4>EnterpriseChatGPT Demo</h4>
+                        <p>Click to load video demonstration</p>
+                        <button class="btn btn-primary" onclick="loadEnterpriseChatGPTVideo()">Load Video</button>
+                    </div>
+                    <div class="video-loading" id="chat-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading video...</p>
+                    </div>
+                    <div class="video-error" id="chat-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video Not Available</h4>
+                        <p>The EnterpriseChatGPT demo video is currently unavailable.</p>
+                        <p>Please contact us for a live demonstration.</p>
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+                <div class="content-text">
+                    <h3>EnterpriseChatGPT</h3>
+                    <p>Revolutionize your business communications with our enterprise-grade chat system. EnterpriseChatGPT provides secure, private AI-powered conversations that never leave your infrastructure.</p>
+                    <p>Our advanced RAG 2.0 technology ensures accurate responses based on your private documents, while maintaining complete data sovereignty and compliance with industry standards.</p>
+                    <ul class="content-features">
+                        <li><i class="fas fa-check"></i> 100% on-premise deployment</li>
+                        <li><i class="fas fa-check"></i> Zero ongoing API costs</li>
+                        <li><i class="fas fa-check"></i> GDPR/HIPAA/SOC2 compliant</li>
+                        <li><i class="fas fa-check"></i> Advanced RAG 2.0 technology</li>
+                        <li><i class="fas fa-check"></i> Unlimited user scaling</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Request EnterpriseChatGPT Demo</a>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Local/On-Premise</h3>
+                    <p>Complete data control and security. No data ever leaves your servers, ensuring maximum privacy and compliance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Zero Ongoing API Costs</h3>
+                    <p>No per-query fees—you pay nothing beyond the initial license. Significant savings compared to cloud subscriptions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>GDPR/HIPAA/SOC2 Ready</h3>
+                    <p>Compliance is built-in from the start. Perfect for healthcare, finance, legal, and government sectors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Advanced Technology</h3>
+                    <p>Provides accurate answers based on your private documents with state-of-the-art retrieval technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Cost-Effective Model</h3>
+                    <p>A one-time license fee instead of a perpetual monthly subscription. Pay once, use forever.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Enterprise Ready</h3>
+                    <p>Scalable from small teams to large enterprises with unlimited user support and custom deployment options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AgTech Section -->
+    <section id="agtech" class="section-agtech">
+        <div class="container">
+            <div class="section-header">
+                <h2>Agricultural Technology Solutions</h2>
+                <p>AI-powered solutions for modern farming and agricultural challenges</p>
+            </div>
+            
+            <!-- AgroDiagnosis Video & Content -->
+            <div class="video-content-section">
+                <div class="video-container" id="agrodiagnosis-video">
+                    <!-- Video will be loaded here -->
+                    <div class="video-placeholder" id="agro-placeholder">
+                        <i class="fas fa-seedling"></i>
+                        <h4>AgroDiagnosis Demo</h4>
+                        <p>Click to load video demonstration</p>
+                        <button class="btn btn-primary" onclick="loadAgroDiagnosisVideo()">Load Video</button>
+                    </div>
+                    <div class="video-loading" id="agro-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading video...</p>
+                    </div>
+                    <div class="video-error" id="agro-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video Not Available</h4>
+                        <p>The AgroDiagnosis demo video is currently unavailable.</p>
+                        <p>Please contact us for a live demonstration.</p>
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+                <div class="content-text">
+                    <h3>AgroDiagnosis AI</h3>
+                    <p>Revolutionizing crop health monitoring with advanced computer vision and machine learning. AgroDiagnosis provides real-time analysis of plant health, detecting diseases, nutrient deficiencies, and pest infestations before they impact yield.</p>
+                    <p>Our AI system analyzes images from drones, field cameras, or mobile devices to provide actionable insights for farmers and agronomists.</p>
+                    <ul class="content-features">
+                        <li><i class="fas fa-check"></i> Real-time disease detection with 95%+ accuracy</li>
+                        <li><i class="fas fa-check"></i> Nutrient deficiency analysis</li>
+                        <li><i class="fas fa-check"></i> Growth stage monitoring</li>
+                        <li><i class="fas fa-check"></i> Yield prediction models</li>
+                        <li><i class="fas fa-check"></i> Mobile app integration</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Request AgroDiagnosis Demo</a>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Crop Yield Optimization</h3>
+                    <p>AI models analyze soil conditions, weather patterns, and crop health to maximize yields and reduce waste.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Smart Irrigation Systems</h3>
+                    <p>Intelligent water management that adapts to weather forecasts and soil moisture levels in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Pest & Disease Detection</h3>
+                    <p>Computer vision systems identify early signs of crop diseases and pest infestations before they spread.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Autonomous Farming Equipment</h3>
+                    <p>Self-driving tractors and harvesters that optimize field operations and reduce labor costs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Supply Chain Optimization</h3>
+                    <p>AI-powered logistics that streamline harvesting, storage, and distribution for maximum freshness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Climate Resilience</h3>
+                    <p>Predictive models help farmers adapt to changing climate conditions and extreme weather events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MedTech Section -->
+    <section id="medtech" class="section-medtech">
+        <div class="container">
+            <div class="section-header">
+                <h2>Medical Technology Solutions</h2>
+                <p>AI-powered healthcare solutions that improve patient outcomes and operational efficiency</p>
+            </div>
+            
+            <!-- MedGemAI Video & Content -->
+            <div class="video-content-section">
+                <div class="video-container" id="medgemai-video">
+                    <!-- Video will be loaded here -->
+                    <div class="video-placeholder" id="med-placeholder">
+                        <i class="fas fa-stethoscope"></i>
+                        <h4>MedGemAI Demo</h4>
+                        <p>Click to load video demonstration</p>
+                        <button class="btn btn-primary" onclick="loadMedGemAIVideo()">Load Video</button>
+                    </div>
+                    <div class="video-loading" id="med-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading video...</p>
+                    </div>
+                    <div class="video-error" id="med-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video Not Available</h4>
+                        <p>The MedGemAI demo video is currently unavailable.</p>
+                        <p>Please contact us for a live demonstration.</p>
+                        <a href="#contact" class="btn btn-primary">Request Demo</a>
+                    </div>
+                </div>
+                <div class="content-text">
+                    <h3>MedGemAI</h3>
+                    <p>Advanced medical imaging analysis powered by deep learning algorithms. MedGemAI assists healthcare professionals in detecting abnormalities, diagnosing conditions, and tracking treatment progress with unprecedented accuracy.</p>
+                    <p>Our system integrates seamlessly with existing hospital infrastructure, providing real-time analysis of X-rays, MRIs, CT scans, and other medical imaging modalities.</p>
+                    <ul class="content-features">
+                        <li><i class="fas fa-check"></i> Multi-modal imaging analysis (X-ray, MRI, CT)</li>
+                        <li><i class="fas fa-check"></i> Early detection of tumors and abnormalities</li>
+                        <li><i class="fas fa-check"></i> Automated measurement and reporting</li>
+                        <li><i class="fas fa-check"></i> HIPAA-compliant data handling</li>
+                        <li><i class="fas fa-check"></i> Integration with PACS and EMR systems</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Request MedGemAI Demo</a>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Diagnostic Assistance</h3>
+                    <p>AI systems that help physicians identify conditions from medical images with higher accuracy and speed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Personalized Treatment Plans</h3>
+                    <p>Machine learning algorithms that analyze patient data to recommend customized treatment approaches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>Electronic Health Record Analysis</h3>
+                    <p>Natural language processing to extract insights from patient records and identify at-risk populations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Surgical Assistance</h3>
+                    <p>AI-guided surgical systems that enhance precision and reduce procedure times.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Drug Discovery Acceleration</h3>
+                    <p>Machine learning models that identify promising drug candidates and predict clinical trial outcomes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Remote Patient Monitoring</h3>
+                    <p>AI systems that analyze wearable device data to detect health issues before they become critical.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Business with AI?</h2>
+            <p>Join forward-thinking companies that are already leveraging RURAMAI's intelligent AI systems to drive innovation while maintaining complete data control.</p>
+            <a href="#contact" class="btn btn-primary open-modal">Start Your AI Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>RURAMAI</h4>
+                    <p>Enterprise AI solutions powered by advanced language models and machine learning technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#chat">Intelligent Chat</a></li>
+                        <li><a href="#agtech">AgTech</a></li>
+                        <li><a href="#medtech">MedTech</a></li>
+                        <li><a href="#" class="open-modal">Custom AI</a></li>
+                        <li><a href="#" class="open-modal">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#contact" class="open-modal">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2025 RURAMAI. All rights reserved.</div>
+                <div>
+                    <a href="#" style="color: var(--gray); margin-right: 1rem;">Privacy Policy</a>
+                    <a href="#" style="color: var(--gray);">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Text scramble effect for navigation
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+                this.isAnimating = false;
+                this.originalText = this.el.querySelector('.original').textContent;
+                this.scrambledElement = this.el.querySelector('.scrambled');
+                this.targetText = this.getTargetText();
+                
+                // Set initial text to original
+                this.scrambledElement.textContent = this.originalText;
+            }
+            
+            scramble() {
+                if (this.isAnimating) return;
+                
+                const length = this.originalText.length;
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                
+                for (let i = 0; i < length; i++) {
+                    const from = this.originalText[i];
+                    const to = this.targetText[i];
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.isAnimating = true;
+                this.update();
+                return promise;
+            }
+            
+            unscramble() {
+                if (this.isAnimating) return;
+                
+                const currentText = this.scrambledElement.textContent;
+                const length = this.originalText.length;
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                
+                for (let i = 0; i < length; i++) {
+                    const from = currentText[i];
+                    const to = this.originalText[i];
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.isAnimating = true;
+                this.update();
+                return promise;
+            }
+            
+            update() {
+                let output = '';
+                let complete = 0;
+                
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="scramble-char">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                
+                this.scrambledElement.innerHTML = output;
+                
+                if (complete === this.queue.length) {
+                    this.isAnimating = false;
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+            
+            getTargetText() {
+                const texts = {
+                    'Home': 'H0m3',
+                    'Chat': 'Ch4t',
+                    'AgTech': '4gT3ch',
+                    'MedTech': 'M3dT3ch'
+                };
+                
+                const target = texts[this.originalText] || this.originalText;
+                
+                // Ensure target text has exactly the same length as original
+                if (target.length !== this.originalText.length) {
+                    // If target is shorter, pad with spaces
+                    if (target.length < this.originalText.length) {
+                        return target + ' '.repeat(this.originalText.length - target.length);
+                    }
+                    // If target is longer, truncate
+                    return target.substring(0, this.originalText.length);
+                }
+                
+                return target;
+            }
+        }
+
+        // Initialize scramble effect on navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrambleElements = document.querySelectorAll('.nav-link.scramble-text');
+            
+            scrambleElements.forEach(element => {
+                const fx = new TextScramble(element);
+                
+                element.addEventListener('mouseenter', function() {
+                    // Hide original, show scrambled and animate
+                    const original = this.querySelector('.original');
+                    const scrambled = this.querySelector('.scrambled');
+                    
+                    original.style.opacity = '0';
+                    scrambled.style.opacity = '1';
+                    fx.scramble();
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    // Animate back to original, then show original
+                    const original = this.querySelector('.original');
+                    const scrambled = this.querySelector('.scrambled');
+                    
+                    fx.unscramble().then(() => {
+                        scrambled.style.opacity = '0';
+                        original.style.opacity = '1';
+                    });
+                });
+            });
+
+            // Email Modal Logic
+            const modalOverlay = document.getElementById('email-modal');
+            const openModalButtons = document.querySelectorAll('.open-modal');
+            const closeModalButton = document.querySelector('.modal-close');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalOverlay.classList.add('active');
+                });
+            });
+
+            const closeModal = () => {
+                modalOverlay.classList.remove('active');
+            };
+
+            closeModalButton.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const form = e.target;
+                const data = new FormData(form);
+                const action = form.action;
+                const formMessages = document.getElementById('form-messages');
+
+                fetch(action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        formMessages.textContent = "Thanks for your message! We'll get back to you soon.";
+                        formMessages.className = 'success';
+                        form.reset();
+                        setTimeout(() => {
+                            closeModal();
+                            formMessages.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                formMessages.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                formMessages.textContent = "Oops! There was a problem submitting your form";
+                            }
+                            formMessages.className = 'error';
+                        })
+                    }
+                }).catch(error => {
+                    formMessages.textContent = "Oops! There was a problem submitting your form";
+                    formMessages.className = 'error';
+                });
+            });
+        });
+    </script>
+
+    <!-- Email Modal -->
+    <div class="modal-overlay" id="email-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Contact Us</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="contact-form" action="https://formspree.io/f/mrbrgoee" method="POST">
+                    <div id="form-messages"></div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

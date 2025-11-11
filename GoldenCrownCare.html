@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Crown Care | Reliable Support, Personalized Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #F1FEFF;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles with Glassmorphism */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #48A6A7;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .logo span {
+            color: #2c7a7b;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 25px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+        
+        .nav-menu li a:hover {
+            color: #48A6A7;
+        }
+        
+        .cta-button {
+            background-color: #48A6A7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #2c7a7b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 122, 123, 0.3);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #48A6A7;
+        }
+        
+        /* Hero Section with Image */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 600px;
+            background: url('https://ik.imagekit.io/ojfedrprt/checking-bp2.jpg?updatedAt=1762089366335') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(72, 166, 167, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color: #D3F9FD;
+            padding: 80px 0;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #48A6A7;
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 18px;
+            color: #2c7a7b;
+        }
+        
+        .divider {
+            width: 1px;
+            background-color: #a8e6e7;
+            margin: 0 20px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #48A6A7;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: #D3F9FD;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .service-item:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(50px);
+        }
+        
+        .service-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .service-content {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .service-image {
+            flex: 1;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+        }
+        
+        .service-item:hover .service-image {
+            transform: scale(1.05);
+        }
+        
+        .service-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c7a7b;
+        }
+        
+        .service-desc {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #D3F9FD;
+            padding: 80px 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            border-top: 4px solid #48A6A7;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .testimonial-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #48A6A7;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: #D3F9FD;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .faq-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c7a7b;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: #48A6A7;
+        }
+        
+        .faq-answer {
+            color: #4a5568;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #48A6A7;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: #D3F9FD;
+        }
+        
+        .footer-desc {
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        
+        .footer-heading {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #D3F9FD;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #2c7a7b;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .service-content {
+                padding: 30px;
+            }
+            
+            .footer-container {
+                gap: 30px;
+            }
+            
+            .nav-menu li {
+                margin-left: 20px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .testimonials-grid,
+            .faq-grid,
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                margin-bottom: 40px;
+            }
+            
+            .divider {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .service-content {
+                padding: 25px;
+            }
+            
+            .nav-menu li {
+                margin-left: 15px;
+            }
+            
+            .cta-button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .header-container {
+                padding: 12px 0;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .cta-button {
+                display: none;
+            }
+            
+            .mobile-cta {
+                display: block !important;
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .testimonials-grid,
+            .faq-grid,
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content {
+                padding: 25px;
+            }
+            
+            /* Mobile layout for service items - image above text */
+            .service-item,
+            .service-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .service-image {
+                width: 100%;
+                min-height: 250px;
+                order: 1;
+            }
+            
+            .service-content {
+                order: 2;
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+            
+            .service-content {
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .stat-text {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .service-title {
+                font-size: 20px;
+            }
+            
+            .footer-container {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+        }
+        
+        .mobile-cta {
+            display: none;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Add some padding to sections to account for fixed header */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Golden <span>Crown</span> Care</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="mobile-cta">
+                        <a href="#contact" class="cta-button">Get Started</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="cta-button desktop-cta">Get Started</a>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Reliable Support, Personalized Care</h1>
+                <p>At Golden Crown Care, we provide compassionate and professional homecare services tailored to meet your unique needs. Our dedicated team is committed to enhancing the quality of life for our clients.</p>
+                <a href="#services" class="cta-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="about">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-text">Client Satisfaction Rate</div>
+            </div>
+            <div class="divider"></div>
+            <div class="stat-item">
+                <div class="stat-number">7+</div>
+                <div class="stat-text">Years of Experience</div>
+            </div>
+            <div class="divider"></div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-text">Caregivers & Specialists</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Care That Feels Like Family</h2>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Medication Support</h3>
+                    <p class="service-desc">Professional assistance with medication management to ensure proper dosage and timing. Our caregivers are trained to handle complex medication schedules and provide reminders to help maintain your health regimen.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/medication.jpg?updatedAt=1762089591480');"></div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Personal Care</h3>
+                    <p class="service-desc">Compassionate assistance with daily living activities while preserving dignity. Our caregivers provide support with bathing, grooming, dressing, and other personal care needs with respect and sensitivity.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/checking-bp2.jpg?updatedAt=1762089366335');"></div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Home Visits</h3>
+                    <p class="service-desc">Regular check-ins and comprehensive care provided in the comfort of your home. Our caregivers visit according to your schedule, providing companionship, meal preparation, light housekeeping, and monitoring of health conditions.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/nurse-chatting.jpg?updatedAt=1762089366346');"></div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Mobility Help</h3>
+                    <p class="service-desc">Support with movement and transfers to maintain independence and safety. Our caregivers assist with walking, using mobility aids, getting in and out of bed or chairs, and fall prevention strategies.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/mobility-help.jpg?updatedAt=1762089366393');"></div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Community Health</h3>
+                    <p class="service-desc">Connecting clients with community resources and social engagement opportunities. We help seniors stay connected with their communities through transportation to events, social activities, and access to local senior services.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/community2.jpg?updatedAt=1762089366377');"></div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-content">
+                    <h3 class="service-title">Health Services</h3>
+                    <p class="service-desc">Comprehensive health monitoring and coordination with healthcare providers. Our services include vital sign monitoring, medication management, appointment scheduling, and communication with doctors and specialists.</p>
+                </div>
+                <div class="service-image" style="background-image: url('https://ik.imagekit.io/ojfedrprt/checking-bp.jpg?updatedAt=1762089366311');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Families Say About Us</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Golden Crown Care provided exceptional care for my mother during her recovery. Their caregivers are compassionate and professional."</p>
+                    <div class="testimonial-author">- Sarah Johnson</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We couldn't be happier with the service. The team went above and beyond to make my father comfortable and cared for."</p>
+                    <div class="testimonial-author">- Michael Thompson</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The personalized care plan made all the difference. They truly understand individual needs and provide tailored support."</p>
+                    <div class="testimonial-author">- Emily Rodriguez</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="resources">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">How do I know if homecare is right for my loved one?</h3>
+                        <p class="faq-answer">Homecare is ideal for seniors who need assistance with daily activities but wish to maintain their independence at home.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">What services are included in your homecare?</h3>
+                        <p class="faq-answer">We offer a wide range of services including personal care, medication management, mobility assistance, and more.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">How are caregivers selected and trained?</h3>
+                        <p class="faq-answer">All our caregivers undergo rigorous background checks and receive comprehensive training in elderly care.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Can I change the care plan if needs evolve?</h3>
+                        <p class="faq-answer">Yes, we regularly reassess care plans and adjust them according to changing needs and preferences.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">What are the costs of homecare services?</h3>
+                        <p class="faq-answer">Costs vary based on the level of care needed. We offer personalized consultations to provide accurate pricing.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">How quickly can services begin?</h3>
+                        <p class="faq-answer">After our initial assessment, we can typically begin services within 48-72 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div>
+                    <div class="footer-logo">Golden <span>Crown</span> Care</div>
+                    <p class="footer-desc">Providing compassionate and professional homecare services with dignity and respect.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Personal Care</a></li>
+                        <li><a href="#services">Medication Support</a></li>
+                        <li><a href="#services">Home Visits</a></li>
+                        <li><a href="#services">Mobility Assistance</a></li>
+                        <li><a href="#services">Companionship</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Care Street, Health City</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@goldencrowncare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golden Crown Care. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Animation on scroll function
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.hero-content, .section-title, .stat-item, .service-item, .testimonial-card, .faq-item');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+        
+        // Add animation to hero content immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.classList.add('animate');
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Initial check for elements in view
+            animateOnScroll();
+        });
+        
+        // Add hover effect to service items
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                if (this.classList.contains('animate')) {
+                    this.style.transform = 'translateX(0)';
+                } else {
+                    this.style.transform = '';
+                }
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    </script>
+</body>
+</html>
