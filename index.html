@@ -1117,13 +1117,14 @@
             requestAnimationFrame(animate);
         }
 
-        // --- Hero Section Specific Particles (Interactive & Antigravity) ---
+        // --- Medusa-like Particle Effect for Hero Section ---
         const heroCanvas = document.getElementById('hero-canvas');
         const hCtx = heroCanvas.getContext('2d');
         let hWidth, hHeight;
         let hParticles = [];
-        const hParticleCount = 100;
+        const hParticleCount = 150; // Increased particle count for denser effect
         let heroMouse = { x: -1000, y: -1000 }; // Start off-screen
+        let pulsePhase = 0; // For the pulsing/expanding effect
 
         function resizeHero() {
             // Ensure we get the dimensions of the parent section
@@ -1136,55 +1137,72 @@
 
         class HeroParticle {
             constructor() {
-                this.x = Math.random() * hWidth;
-                this.y = Math.random() * hHeight;
-                // Antigravity: Always move upwards slightly
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = -Math.random() * 1 - 0.2;
-                this.size = Math.random() * 2 + 1;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                // Cyan Accent Color
-                this.color = 'rgba(6, 182, 212, ';
+                this.angle = Math.random() * Math.PI * 2;
+                this.radius = 50 + Math.random() * 100;
+                this.speed = 0.01 + Math.random() * 0.02;
+                this.size = 1 + Math.random() * 3;
+                this.oscillation = Math.random() * Math.PI * 2;
+                this.oscillationSpeed = 0.02 + Math.random() * 0.03;
+                this.distance = 50 + Math.random() * 100;
+                // Cyan Accent Color with varying opacity
+                this.color = `rgba(6, 182, 212, ${0.3 + Math.random() * 0.4})`;
+                this.x = 0;
+                this.y = 0;
+                this.updatePosition();
+            }
+
+            updatePosition() {
+                // Calculate position based on angle and distance from center
+                this.x = heroMouse.x + Math.cos(this.angle) * this.distance;
+                this.y = heroMouse.y + Math.sin(this.angle) * this.distance;
             }
 
             update() {
-                // Basic movement
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Reset if goes off top
-                if (this.y < 0) {
-                    this.y = hHeight;
-                    this.x = Math.random() * hWidth;
-                }
-
-                // Interactive Force Field
-                let dx = heroMouse.x - this.x;
-                let dy = heroMouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                const forceRadius = 150;
-
-                if (distance < forceRadius) {
-                    const forceDirectionX = dx / distance;
-                    const forceDirectionY = dy / distance;
-                    const force = (forceRadius - distance) / forceRadius;
-                    // Push away (Antigravity field)
-                    const directionX = forceDirectionX * force * 5;
-                    const directionY = forceDirectionY * force * 5;
-                    this.x -= directionX;
-                    this.y -= directionY;
+                // Rotate around the mouse position
+                this.angle += this.speed;
+                
+                // Pulsing effect - particles expand and contract
+                this.oscillation += this.oscillationSpeed;
+                const pulse = Math.sin(pulsePhase) * 20;
+                this.distance = 50 + Math.sin(this.oscillation) * (50 + pulse);
+                
+                // Update position based on new values
+                this.updatePosition();
+                
+                // Keep particles within canvas bounds
+                if (this.x < 0 || this.x > hWidth || this.y < 0 || this.y > hHeight) {
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.distance = 50 + Math.random() * 100;
                 }
             }
 
             draw() {
                 hCtx.beginPath();
                 hCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                hCtx.fillStyle = this.color + '0.6)';
-                hCtx.shadowBlur = 10;
+                hCtx.fillStyle = this.color;
+                hCtx.shadowBlur = 15;
                 hCtx.shadowColor = '#06b6d4';
                 hCtx.fill();
                 hCtx.shadowBlur = 0;
+                
+                // Draw connections to nearby particles
+                for (let other of hParticles) {
+                    if (other !== this) {
+                        let dx = this.x - other.x;
+                        let dy = this.y - other.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        // Only connect close particles
+                        if (distance < 80) {
+                            hCtx.beginPath();
+                            hCtx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance/80)})`;
+                            hCtx.lineWidth = 0.5;
+                            hCtx.moveTo(this.x, this.y);
+                            hCtx.lineTo(other.x, other.y);
+                            hCtx.stroke();
+                        }
+                    }
+                }
             }
         }
 
@@ -1197,41 +1215,16 @@
 
         function animateHero() {
             hCtx.clearRect(0, 0, hWidth, hHeight);
-
-            // Draw connections specifically near mouse for "Neural Network" feel
-            for (let i = 0; i < hParticles.length; i++) {
-                hParticles[i].update();
-                hParticles[i].draw();
-
-                // Connect particles close to each other
-                for (let j = i; j < hParticles.length; j++) {
-                    let dx = hParticles[i].x - hParticles[j].x;
-                    let dy = hParticles[i].y - hParticles[j].y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 100) {
-                        hCtx.beginPath();
-                        hCtx.strokeStyle = `rgba(6, 182, 212, ${0.15 * (1 - dist / 100)})`;
-                        hCtx.lineWidth = 0.5;
-                        hCtx.moveTo(hParticles[i].x, hParticles[i].y);
-                        hCtx.lineTo(hParticles[j].x, hParticles[j].y);
-                        hCtx.stroke();
-                    }
-                }
-
-                // Connect to mouse if close
-                let dx = heroMouse.x - hParticles[i].x;
-                let dy = heroMouse.y - hParticles[i].y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 150) {
-                    hCtx.beginPath();
-                    hCtx.strokeStyle = `rgba(6, 182, 212, ${0.3 * (1 - dist / 150)})`;
-                    hCtx.lineWidth = 1;
-                    hCtx.moveTo(hParticles[i].x, hParticles[i].y);
-                    hCtx.lineTo(heroMouse.x, heroMouse.y);
-                    hCtx.stroke();
-                }
+            
+            // Update pulse phase for expanding/contracting effect
+            pulsePhase += 0.03;
+            
+            // Update and draw all particles
+            for (let particle of hParticles) {
+                particle.update();
+                particle.draw();
             }
+            
             requestAnimationFrame(animateHero);
         }
 
