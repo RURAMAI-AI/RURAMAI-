@@ -46,9 +46,12 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#020617">
 
-    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/EnterpriseChatGPT-Hero-Video.mp4?updatedAt=1762022153699" as="video">
-    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/AgroDiagnosis%202.0.mp4?updatedAt=1761595942386" as="video">
-    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/MedGemAI-Hero-Video-short2.mp4?updatedAt=1761595940443" as="video">
+    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/EnterpriseChatGPT-Hero-Video.mp4?updatedAt=1762022153699"
+        as="video">
+    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/AgroDiagnosis%202.0.mp4?updatedAt=1761595942386"
+        as="video">
+    <link rel="preload" href="https://ik.imagekit.io/ojfedrprt/MedGemAI-Hero-Video-short2.mp4?updatedAt=1761595940443"
+        as="video">
 
     <!-- JSON-LD Schema Markup -->
     <script type="application/ld+json">
@@ -738,7 +741,8 @@
 
     <!-- Hero Section with Specific Particles -->
     <section class="page-hero" id="home">
-        <canvas id="hero-canvas"></canvas>
+        <div id="hero-canvas-container"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
         <div class="container hero-content">
             <h1>Intelligent AI Solutions</h1>
             <p>Enterprise-grade AI systems deployed on your infrastructure with complete data privacy and significant
@@ -1117,145 +1121,7 @@
             requestAnimationFrame(animate);
         }
 
-        // --- Medusa-like Particle Effect for Hero Section ---
-        const heroCanvas = document.getElementById('hero-canvas');
-        const hCtx = heroCanvas.getContext('2d');
-        let hWidth, hHeight;
-        let hParticles = [];
-        const hParticleCount = 150; // Increased particle count for denser effect
-        let heroMouse = { x: -1000, y: -1000 }; // Start off-screen
-        let pulsePhase = 0; // For the pulsing/expanding effect
 
-        function resizeHero() {
-            // Ensure we get the dimensions of the parent section
-            const heroSection = document.getElementById('home');
-            hWidth = heroSection.offsetWidth;
-            hHeight = heroSection.offsetHeight;
-            heroCanvas.width = hWidth;
-            heroCanvas.height = hHeight;
-        }
-
-        class HeroParticle {
-            constructor() {
-                this.angle = Math.random() * Math.PI * 2;
-                this.radius = 50 + Math.random() * 100;
-                this.speed = 0.01 + Math.random() * 0.02;
-                this.size = 1 + Math.random() * 3;
-                this.oscillation = Math.random() * Math.PI * 2;
-                this.oscillationSpeed = 0.02 + Math.random() * 0.03;
-                this.distance = 50 + Math.random() * 100;
-                // Cyan Accent Color with varying opacity
-                this.color = `rgba(6, 182, 212, ${0.3 + Math.random() * 0.4})`;
-                this.x = 0;
-                this.y = 0;
-                this.updatePosition();
-            }
-
-            updatePosition() {
-                // Calculate position based on angle and distance from center
-                this.x = heroMouse.x + Math.cos(this.angle) * this.distance;
-                this.y = heroMouse.y + Math.sin(this.angle) * this.distance;
-            }
-
-            update() {
-                // Rotate around the mouse position
-                this.angle += this.speed;
-                
-                // Pulsing effect - particles expand and contract
-                this.oscillation += this.oscillationSpeed;
-                const pulse = Math.sin(pulsePhase) * 20;
-                this.distance = 50 + Math.sin(this.oscillation) * (50 + pulse);
-                
-                // Update position based on new values
-                this.updatePosition();
-                
-                // Keep particles within canvas bounds
-                if (this.x < 0 || this.x > hWidth || this.y < 0 || this.y > hHeight) {
-                    this.angle = Math.random() * Math.PI * 2;
-                    this.distance = 50 + Math.random() * 100;
-                }
-            }
-
-            draw() {
-                hCtx.beginPath();
-                hCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                hCtx.fillStyle = this.color;
-                hCtx.shadowBlur = 15;
-                hCtx.shadowColor = '#06b6d4';
-                hCtx.fill();
-                hCtx.shadowBlur = 0;
-                
-                // Draw connections to nearby particles
-                for (let other of hParticles) {
-                    if (other !== this) {
-                        let dx = this.x - other.x;
-                        let dy = this.y - other.y;
-                        let distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        // Only connect close particles
-                        if (distance < 80) {
-                            hCtx.beginPath();
-                            hCtx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance/80)})`;
-                            hCtx.lineWidth = 0.5;
-                            hCtx.moveTo(this.x, this.y);
-                            hCtx.lineTo(other.x, other.y);
-                            hCtx.stroke();
-                        }
-                    }
-                }
-            }
-        }
-
-        function initHeroParticles() {
-            hParticles = [];
-            for (let i = 0; i < hParticleCount; i++) {
-                hParticles.push(new HeroParticle());
-            }
-        }
-
-        function animateHero() {
-            hCtx.clearRect(0, 0, hWidth, hHeight);
-            
-            // Update pulse phase for expanding/contracting effect
-            pulsePhase += 0.03;
-            
-            // Update and draw all particles
-            for (let particle of hParticles) {
-                particle.update();
-                particle.draw();
-            }
-            
-            requestAnimationFrame(animateHero);
-        }
-
-        // Events for Global Canvas
-        window.addEventListener('resize', () => {
-            resize();
-            resizeHero();
-            initParticles();
-            initHeroParticles();
-        });
-
-        resize();
-        initParticles();
-        animate();
-
-        // Events for Hero Canvas
-        resizeHero();
-        initHeroParticles();
-        animateHero();
-
-        // Track mouse specifically for Hero Section interactions
-        const heroSection = document.getElementById('home');
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = heroCanvas.getBoundingClientRect();
-            heroMouse.x = e.clientX - rect.left;
-            heroMouse.y = e.clientY - rect.top;
-        });
-        heroSection.addEventListener('mouseleave', () => {
-            heroMouse.x = -1000;
-            heroMouse.y = -1000;
-        });
 
 
         // --- Other Existing Interactions ---
@@ -1541,6 +1407,177 @@
             placeholder.style.display = 'flex';
         });
     </script>
+</body>
+
+<!-- Three.js Particle Effect for Hero Section -->
+<script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+    const heroContainer = document.getElementById('hero-canvas-container');
+
+    // --- Scene Setup ---
+    const scene = new THREE.Scene();
+    // Transparent background to blend with the site's dark theme if needed, 
+    // but the user liked the white background effect. 
+    // However, the site is dark mode (theme-color #020617).
+    // If I use white, it will cover the hero content text which is white.
+    // Wait, the hero text is white: color: var(--text-main); (#f8fafc).
+    // If I put a white background canvas behind white text, it will be unreadable.
+    // The user liked the "particle_effect.html" which was white.
+    // Maybe they want the particles to be white/blue on the DARK background?
+    // Or they want the whole hero section to be white?
+    // "implement the same effect... delete the particles that are there now"
+    // The current particles are cyan on dark.
+    // I will assume they want the *motion* and *shape* (Vortex/Medusa), but probably adapted to the theme?
+    // OR they want the exact look.
+    // Let's try to adapt the colors to the dark theme to be safe, or make it transparent.
+    // If I make it transparent, I can keep the site's background.
+    // Let's use the site's dark background color for the fog and scene to match seamlessly.
+
+    const darkBg = 0x020617; // Matches --dark-bg
+    scene.background = null; // Transparent to let CSS background show? Or set color.
+    // Let's set color to match exactly so fog works.
+    scene.background = new THREE.Color(darkBg);
+    scene.fog = new THREE.FogExp2(darkBg, 0.002);
+
+    const camera = new THREE.PerspectiveCamera(75, heroContainer.clientWidth / heroContainer.clientHeight, 0.1, 1000);
+    camera.position.z = 30;
+    camera.position.y = 0;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(heroContainer.clientWidth, heroContainer.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    heroContainer.appendChild(renderer.domElement);
+
+    // --- Particle System Configuration ---
+    const PARTICLE_COUNT = 4000;
+
+    const geometry = new THREE.BufferGeometry();
+    const positions = [];
+    const originalPositions = [];
+    const randomOffsets = [];
+    const speeds = [];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const r = Math.random() * 40 + 1;
+        const theta = Math.random() * Math.PI * 2;
+        const depth = -150 / (r + 2);
+
+        const x = r * Math.cos(theta);
+        const y = r * Math.sin(theta);
+
+        const px = x;
+        const py = y;
+        const pz = depth;
+
+        positions.push(px, py, pz);
+        originalPositions.push(px, py, pz);
+        randomOffsets.push(Math.random() * Math.PI * 2);
+        speeds.push(0.2 + Math.random() * 0.5);
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('originalPosition', new THREE.Float32BufferAttribute(originalPositions, 3));
+    geometry.setAttribute('randomOffset', new THREE.Float32BufferAttribute(randomOffsets, 1));
+    geometry.setAttribute('speed', new THREE.Float32BufferAttribute(speeds, 1));
+
+    // Material
+    const textureCanvas = document.createElement('canvas');
+    textureCanvas.width = 32;
+    textureCanvas.height = 32;
+    const textureContext = textureCanvas.getContext('2d');
+    textureContext.beginPath();
+    textureContext.arc(16, 16, 14, 0, Math.PI * 2);
+    textureContext.fillStyle = '#ffffff';
+    textureContext.fill();
+    const texture = new THREE.CanvasTexture(textureCanvas);
+
+    const material = new THREE.PointsMaterial({
+        color: 0x3b82f6, // Using the site's primary blue (--primary: #3b82f6) instead of Google Blue
+        size: 0.3,
+        map: texture,
+        transparent: true,
+        opacity: 0.8,
+        alphaTest: 0.01,
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending // Additive looks better on dark backgrounds
+    });
+
+    const particleSystem = new THREE.Points(geometry, material);
+    scene.add(particleSystem);
+
+    // --- Mouse Interaction ---
+    const interactionMouse = new THREE.Vector2();
+    const targetRotation = new THREE.Vector2();
+    const windowHalfX = window.innerWidth / 2;
+    const windowHalfY = window.innerHeight / 2;
+
+    // Track mouse relative to the container or window? 
+    // Window is smoother for parallax.
+    document.addEventListener('mousemove', (event) => {
+        interactionMouse.x = (event.clientX - windowHalfX) / 100;
+        interactionMouse.y = (event.clientY - windowHalfY) / 100;
+    });
+
+    // --- Animation Loop ---
+    const clock = new THREE.Clock();
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        const time = clock.getElapsedTime();
+        const positions = particleSystem.geometry.attributes.position.array;
+        const originals = particleSystem.geometry.attributes.originalPosition.array;
+        const speeds = particleSystem.geometry.attributes.speed.array;
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const i3 = i * 3;
+            const ox = originals[i3];
+            const oy = originals[i3 + 1];
+            const oz = originals[i3 + 2];
+
+            // Pulse
+            const pulse = Math.sin(time * 1.5 + oz * 0.1) * 0.1 + 1;
+
+            // Swirl
+            const swirlAngle = time * speeds[i] * 0.5;
+            const cosA = Math.cos(swirlAngle);
+            const sinA = Math.sin(swirlAngle);
+
+            let rx = ox * cosA - oy * sinA;
+            let ry = ox * sinA + oy * cosA;
+
+            rx *= pulse;
+            ry *= pulse;
+            const rz = oz * (1 + Math.sin(time * 1.5) * 0.1);
+
+            positions[i3] = rx;
+            positions[i3 + 1] = ry;
+            positions[i3 + 2] = rz;
+        }
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+
+        // Tilt
+        targetRotation.x = interactionMouse.y * 0.5;
+        targetRotation.y = interactionMouse.x * 0.5;
+
+        particleSystem.rotation.x += (targetRotation.x - particleSystem.rotation.x) * 0.05;
+        particleSystem.rotation.y += (targetRotation.y - particleSystem.rotation.y) * 0.05;
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // --- Resize Handler ---
+    window.addEventListener('resize', () => {
+        const width = heroContainer.clientWidth;
+        const height = heroContainer.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    });
+</script>
 </body>
 
 </html>
